@@ -1,0 +1,40 @@
+CustomerData:
+  type: "object"
+  required:
+    - version
+    - units
+    - trading_schedule
+    - debug
+  properties:
+    version:
+      type: "string"
+      pattern: '^[v]\d{6}$'
+      default: "v231201"
+      description: "Software version"
+    units:
+      type: "number"
+      format: "float"
+      minimum: 0
+      exclusiveMinimum: true
+      maximum: 10
+      exclusiveMaximum: false
+      default: 1
+      description: "Number of units"
+    trading_schedule:
+      type: "array"
+      items:
+        type: "integer"
+        format: "int32"
+        minimum: 1
+        exclusiveMinimum: true
+        maximum: 23
+        exclusiveMaximum: false
+      uniqueItems: true
+      minItems: 2
+      maxItems: 2
+      default: [8, 17]
+      description: "Start and end time of operations"
+    debug:
+      type: "boolean"
+      default: false
+      description: "Activate/deactivate verbose mode"
